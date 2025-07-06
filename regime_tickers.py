@@ -1,0 +1,152 @@
+
+# High Volatility vs. Low Volatility
+# Goal: Detect when markets are calm vs. when they're turbulent or chaotic.
+custom_volatility_subset = [
+ "VIXY",  # VIX derivatives (direct volatility proxies)
+ "IWM", "QQQ",            # More volatile than SPY, especially small caps & tech. SPY only for comparison.
+ "HYG",                   # Junk bonds — sensitive to credit risk (volatility proxy)
+ "DBC",                 # Broad commodities (sensitive to macro volatility)
+ "GLD"]            # Gold as a safe haven during volatility spikes                  
+# Reasoning: Combine VIX-based, high-beta equity, junk credit, and commodities to capture different volatility sources.
+
+
+##### MIRAR LO QUE DICE GOOGLE GEMINI "SUBSET TICKERS" #####
+### CHAT GPT TE ha dado muchos, gemini te da menos pero es mucho mejor tener menor features
+#######################
+#########################
+
+# Trending vs. Mean-Reverting
+# Goal: Identify strong directional trends vs. choppy or sideways action
+custom_trend_subset= [
+ "SPY", "QQQ", "RSP",          # Trend benchmark, growth vs. equal weight
+ "XLK", "XLY", "XLE",          # Sectors with historically strong trends
+ "TLT", "IEF", "VCIT",         # Long & medium duration bonds — trending in rates cycles
+ "GLD", "SLV", "DBC",          # Trend-following commodities
+ "VT", "ACWI", "VEA", "VWO"]   # Global equity trend signals
+# Reasoning: Use broad benchmarks, sectors that trend well, rate-sensitive assets, and global flows to find persistent directional behavior.
+
+# Bullish Momentum vs. Bearish Momentum
+# Goal: Separate strong upward moves from downtrends — momentum extremes.
+custom_moment_subset = [
+ "QQQ", "IWM", "VB",             # High beta equities — overreact on both sides
+ "XLF", "XLK", "XLY",            # Cyclical sectors — amplify bull/bear signals
+ "RSP",                         # Equal weight — better breadth signal than cap-weight
+ "VIXY", "SVIX",                 # Momentum extremes in volatility (fear vs. complacency)
+ "HYG", "SJNK",                  # Credit momentum (risk-on/off)
+ "VTI", "VT", "IEFA", "VWO"]    # U.S. and global risk appetite indicators
+# Reasoning: Choose momentum-amplifying assets and cyclical sectors, along with credit & global risk proxies that shift quickly with sentiment.
+
+# Expansion vs. Contraction (Breadth & Participation)
+# Goal: Detect whether the market is moving together (broad rally/sell-off) or fragmented.
+custom_partici_subset = [
+ "SPY", "RSP", "VTI",             # Cap-weight vs. equal-weight for breadth divergence
+ "XLC", "XLY", "XLK",             # Growth/cyclical sectors
+ "XLP", "XLU", "XLV",             # Defensive sectors
+ "IWM", "VO", "VB",               # Small and mid-caps = participation proxy
+ "BND", "TLT",                    # Bonds react inversely in contractions
+ "VEA", "VWO", "ACWI",            # Global expansion/contraction
+ "DBC", "GLD"]                    # Real assets respond to macro shifts
+# Reasoning: Use style/size divergence, sector rotation, and international participation to gauge true breadth and macro expansion/contraction.
+
+
+### List for various market segments
+# 1. Broad Market Equity ETFs (USA)
+broad_market_equity_etfs = [
+    "VOO",  # Vanguard S&P 500 ETF
+    "SPY",  # SPDR S&P 500 ETF Trust
+    "IVV",  # iShares Core S&P 500 ETF
+    "VTI",  # Vanguard Total Stock Market ETF
+    "QQQ",  # Invesco QQQ Trust Series I (Nasdaq 100)
+    "ITOT", # iShares Core S&P Total U.S. Stock Market ETF
+    "SCHB", # Schwab US Broad Market ETF
+    "IWM",  # iShares Russell 2000 ETF (Small-Cap)
+    "IJH",  # iShares Core S&P Mid-Cap ETF
+    "VO",   # Vanguard Mid-Cap ETF
+    "VB",   # Vanguard Small Cap ETF
+    "SCHD", # Schwab US Dividend Equity ETF
+    "VYM",  # Vanguard High Dividend Yield Index ETF
+    "VIG",  # Vanguard Dividend Appreciation ETF
+    "RSP",  # Invesco S&P 500® Equal Weight ETF
+    "VT",   # Vanguard Total World Stock ETF (includes ex-US)
+]
+
+# 2. Sector-Specific Equity ETFs (USA)
+sector_specific_etfs = [
+    "XLC",  # Communication Services Select Sector SPDR Fund
+    "XLY",  # Consumer Discretionary Select Sector SPDR Fund
+    "XLP",  # Consumer Staples Select Sector SPDR Fund
+    "XLE",  # Energy Select Sector SPDR Fund
+    "XLF",  # Financial Select Sector SPDR Fund
+    "XLV",  # Health Care Select Sector SPDR Fund
+    "XLI",  # Industrials Select Sector SPDR Fund
+    "XLB",  # Materials Select Sector SPDR Fund
+    "XLRE", # Real Estate Select Sector SPDR Fund
+    "XLK",  # Technology Select Sector SPDR Fund
+    "XLU",  # Utilities Select Sector SPDR Fund
+    "KBE",  # SPDR S&P Bank ETF (Industry specific)
+    "XBI",  # SPDR S&P Biotech ETF (Industry specific)
+    "XOP",  # SPDR S&P Oil & Gas Exploration & Production ETF (Industry specific)
+    "XRT",  # SPDR S&P Retail ETF (Industry specific)
+    "SOXX", # iShares Semiconductor ETF (though XLK also has tech)
+]
+
+# 3. Fixed Income (Bond) ETFs
+fixed_income_etfs = [
+    "BND",  # Vanguard Total Bond Market ETF (broad aggregate)
+    "AGG",  # iShares Core U.S. Aggregate Bond ETF (broad aggregate)
+    "TLT",  # iShares 20+ Year Treasury Bond ETF (long-term treasuries)
+    "IEF",  # iShares 7-10 Year Treasury Bond ETF (intermediate-term treasuries)
+    "VGSH", # Vanguard Short-Term Treasury ETF (short-term treasuries)
+    "VCIT", # Vanguard Intermediate-Term Corporate Bond ETF
+    "VCLT", # Vanguard Long-Term Corporate Bond ETF
+    "VCSH", # Vanguard Short-Term Corporate Bond ETF
+    "BNDX", # Vanguard Total International Bond ETF
+    "HYG",  # iShares iBoxx $ High Yield Corporate Bond ETF (high yield/junk bonds)
+    "SJNK",  # SPDR Bloomberg Short-Term High Yield Bond ETF (high yield/junk bonds)
+    "MUB",  # iShares National Muni Bond ETF (municipal bonds)
+    "VTEB", # Vanguard Tax-Exempt Bond ETF (municipal bonds)
+    "SCHP", # Schwab US TIPS ETF (inflation-protected securities)
+    "VTIP", # Vanguard Short-Term Inflation-Protected Securities ETF
+    "BSV",  # Vanguard Short-Term Bond ETF
+    "MBB",  # iShares MBS ETF (mortgage-backed securities)
+]
+
+# 4. Commodity ETFs
+commodity_etfs = [
+    "GLD",  # SPDR Gold Shares (gold)
+    "IAU",  # iShares Gold Trust (gold)
+    "SLV",  # iShares Silver Trust (silver)
+    "PDBC", # Invesco Optimum Yield Diversified Commodity Strategy No K-1 ETF (broad commodities)
+    "DBC",  # Invesco DB Commodity Index Tracking Fund (broad commodities)
+    "USO",  # United States Oil Fund, LP (crude oil)
+    "UNG",  # United States Natural Gas Fund, LP (natural gas)
+    "CORN", # Teucrium Corn Fund (corn)
+    "WEAT", # Teucrium Wheat Fund (wheat)
+    "SOYB", # Teucrium Soybean Fund (soybeans)
+    "CPER", # United States Copper Index Fund (copper)
+]
+
+# 5. Volatility ETFs (Often complex, involving futures, and not for all investors)
+volatility_etfs = [
+    "VIXY", # ProShares VIX Short-Term Futures ETF (1x leveraged  VIX futures)
+    "UVXY", # ProShares Ultra VIX Short-Term Futures ETF (2x leveraged VIX futures)
+    "SVXY", # ProShares Short VIX Short-Term Futures ETF (inverse VIX futures)
+    "SVIX", # -1x Short VIX Futures ETF (inverse VIX futures)
+    "UVIX", # 2x Long VIX Futures ETF (2x leveraged VIX futures)
+    "SVOL", # Simplify Volatility Premium ETF (aims for volatility premium)
+]
+
+# 6. International/Global Exposure ETFs
+international_global_exposure_etfs = [
+    "VEA",  # Vanguard FTSE Developed Markets ETF (developed ex-US)
+    "IEFA", # iShares Core MSCI EAFE ETF (developed ex-US)
+    "EFA",  # iShares MSCI EAFE ETF (developed ex-US)
+    "VWO",  # Vanguard FTSE Emerging Markets ETF (emerging markets)
+    "IEMG", # iShares Core MSCI Emerging Markets ETF (emerging markets)
+    "ACWI", # iShares MSCI ACWI ETF (All Country World Index - developed + emerging)
+    "VXUS", # Vanguard Total International Stock ETF (total international ex-US)
+    "SCHF", # Schwab International Equity ETF (developed ex-US)
+    "SPDW", # SPDR Portfolio Developed World ex-US ETF
+    "EEM",  # iShares MSCI Emerging Markets ETF
+    "VT",   # Vanguard Total World Stock ETF (as mentioned in Broad Market, it has global exposure)
+]
