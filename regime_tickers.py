@@ -1,52 +1,38 @@
 
-# High Volatility vs. Low Volatility
-# Goal: Detect when markets are calm vs. when they're turbulent or chaotic.
-custom_volatility_subset = [
- "VIXY",  # VIX derivatives (direct volatility proxies)
- "IWM", "QQQ",            # More volatile than SPY, especially small caps & tech. SPY only for comparison.
- "HYG",                   # Junk bonds — sensitive to credit risk (volatility proxy)
- "DBC",                 # Broad commodities (sensitive to macro volatility)
- "GLD"]            # Gold as a safe haven during volatility spikes                  
-# Reasoning: Combine VIX-based, high-beta equity, junk credit, and commodities to capture different volatility sources.
+custom_vol_subset = [
+"SPY", # US Broad Market (Large Cap) Benchmark S&P 500, high liquidity, volatility anchor
+"IWM", # US Broad Market (Small Cap) Small-cap exposure, higher realized volatility and skew
+"XBI", # Biotech (Speculative)	Idiosyncratic volatility, high-vol sector
+"TLT", # Long-Term US Treasuries  Bonds often move inversely to equities, and long-term treasuries are highly sensitive to interest rate changes and economic uncertainty
+"HYG", # High Yield Corporate Bonds Junk bonds — sensitive to credit risk. A "risk-on/risk-off" indicator within fixed income
+"VEA", # Developed Markets ex-US Equity Captures international developed market equity volatility, providing diversification from the US focus.
+"VWO", # Emerging Markets Equity. Adds a distinct global equity volatility component.
+"VIXY", # Volatility Instrument	Direct VIX futures exposure, useful for spread/skew metrics
+]    
 
 
-##### MIRAR LO QUE DICE GOOGLE GEMINI "SUBSET TICKERS" #####
-### CHAT GPT TE ha dado muchos, gemini te da menos pero es mucho mejor tener menor features
-#######################
-#########################
 
-# Trending vs. Mean-Reverting
-# Goal: Identify strong directional trends vs. choppy or sideways action
-custom_trend_subset= [
- "SPY", "QQQ", "RSP",          # Trend benchmark, growth vs. equal weight
- "XLK", "XLY", "XLE",          # Sectors with historically strong trends
- "TLT", "IEF", "VCIT",         # Long & medium duration bonds — trending in rates cycles
- "GLD", "SLV", "DBC",          # Trend-following commodities
- "VT", "ACWI", "VEA", "VWO"]   # Global equity trend signals
-# Reasoning: Use broad benchmarks, sectors that trend well, rate-sensitive assets, and global flows to find persistent directional behavior.
 
-# Bullish Momentum vs. Bearish Momentum
-# Goal: Separate strong upward moves from downtrends — momentum extremes.
-custom_moment_subset = [
- "QQQ", "IWM", "VB",             # High beta equities — overreact on both sides
- "XLF", "XLK", "XLY",            # Cyclical sectors — amplify bull/bear signals
- "RSP",                         # Equal weight — better breadth signal than cap-weight
- "VIXY", "SVIX",                 # Momentum extremes in volatility (fear vs. complacency)
- "HYG", "SJNK",                  # Credit momentum (risk-on/off)
- "VTI", "VT", "IEFA", "VWO"]    # U.S. and global risk appetite indicators
-# Reasoning: Choose momentum-amplifying assets and cyclical sectors, along with credit & global risk proxies that shift quickly with sentiment.
 
-# Expansion vs. Contraction (Breadth & Participation)
-# Goal: Detect whether the market is moving together (broad rally/sell-off) or fragmented.
-custom_partici_subset = [
- "SPY", "RSP", "VTI",             # Cap-weight vs. equal-weight for breadth divergence
- "XLC", "XLY", "XLK",             # Growth/cyclical sectors
- "XLP", "XLU", "XLV",             # Defensive sectors
- "IWM", "VO", "VB",               # Small and mid-caps = participation proxy
- "BND", "TLT",                    # Bonds react inversely in contractions
- "VEA", "VWO", "ACWI",            # Global expansion/contraction
- "DBC", "GLD"]                    # Real assets respond to macro shifts
-# Reasoning: Use style/size divergence, sector rotation, and international participation to gauge true breadth and macro expansion/contraction.
+# # High Volatility vs. Low Volatility - Expansion vs. Contraction
+# custom_vol_subset = [
+#   ## For volatility  
+#  "VIXY",  # VIX derivatives (direct volatility proxies)
+#  "IWM",          # More volatile than SPY, especially small caps & tech. SPY only for comparison.
+#  "HYG",                   # Junk bonds — sensitive to credit risk (volatility proxy)
+#  "GLD",            # Gold as a safe haven during volatility spikes    
+# ]
+#  ## For expanding-contracting regimes
+# custom_exp_subset = [
+# "IWM", # (iShares Russell 2000 ETF): Small-cap companies are often more sensitive to the domestic economic cycle than their large-cap counterparts.
+#  "BND", #(Vanguard Total Bond Market ETF): The bond market often behaves differently than the stock market across the business cycle, making it a valuable diversifying indicator.
+# "SCHP", # (Schwab US TIPS ETF): Treasury Inflation-Protected Securities provide insight into the market's inflation expectations, a key component of the business cycle.
+#  "XLI", # (Industrials Select Sector SPDR Fund): The industrial sector is highly cyclical and typically performs well during economic expansions
+#  "CPER", #(United States Copper Index Fund): Copper is a key industrial metal, and its price is often considered a proxy for global economic health, earning it the nickname "Dr. Copper."  
+#  "SCHP" #(Schwab US TIPS ETF): Treasury Inflation-Protected Securities provide insight into the market's inflation expectations, a key component of the business cycle.  
+# ]
+
+# ## #################################################3 Ver gemmin para explicar porque estos tickers y mucho mas
 
 
 ### List for various market segments
@@ -132,7 +118,6 @@ volatility_etfs = [
     "UVXY", # ProShares Ultra VIX Short-Term Futures ETF (2x leveraged VIX futures)
     "SVXY", # ProShares Short VIX Short-Term Futures ETF (inverse VIX futures)
     "SVIX", # -1x Short VIX Futures ETF (inverse VIX futures)
-    "UVIX", # 2x Long VIX Futures ETF (2x leveraged VIX futures)
     "SVOL", # Simplify Volatility Premium ETF (aims for volatility premium)
 ]
 
