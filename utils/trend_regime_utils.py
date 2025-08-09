@@ -36,6 +36,7 @@ def load_trend_data(API_KEY, SECRET_KEY, earliest_date, last_date, all_tickers=A
         SECRET_KEY (str): Alpaca secret key.
         earliest_date (str): Start date, datetime object
         last_date (str): End date, datetime object
+        all_tickers (list): str of tickers to load
 
     Returns:
         pd.DataFrame: Sorted DataFrame of stock bars with timestamp index.
@@ -64,6 +65,7 @@ def process_trend_data(df_raw, tickers_subset=TICKERS_SUBSET):
 
     Parameters:
         df_raw (pd.DataFrame): Raw stock data with 'symbol' and 'close' columns.
+        tickers_subset (dict): tickers divided by subsets (keys)
 
     Returns:
         pd.DataFrame: Pivoted DataFrame of trend features (returns, RSI) by symbol.
