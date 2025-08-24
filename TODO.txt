@@ -1,5 +1,0 @@
-USAR RANDOM STATE
-
-dejar de runnear mas trys que no sean randomseed, quedarse con las dos arq solo max.
-calcular rentabilidades por threshold de prediction PR curve
-COMPARAR CUAL DE LAS 2 tiene mejor rentabilidad
