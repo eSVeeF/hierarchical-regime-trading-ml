@@ -34,24 +34,24 @@ The framework forecasts whether a given trading signal is likely to be profitabl
 ## 🧠 Conceptual Pipeline
 
 1️⃣ **Alpaca API (Market Data)**  
-⬇️  
+↓  
 2️⃣ **Custom Asset Universe**  
 *(SPY, QQQ, EEM, EFA, XLP, XLV, XLU, UUP, FXY, FXE, TLT, GLD, ...)*  
-⬇️  
+↓  
 3️⃣ **Feature Engineering**  
 *(Returns, Ratios, Technical Indicators)*  
-⬇️  
+↓  
 4️⃣ **UMAP + GMM** → *Market Regime Clustering*  
 *(Bull, Bear, Neutral, US Bull)*  
-⬇️  
+↓  
 5️⃣ **UMAP + Spectral** → *Bull Subregime Clustering*  
 *(Aggressive Bull, Defensive Bull)*  
-⬇️  
+↓  
 6️⃣ **Enhanced Dataset**  
 *(Regime Tags + Technical + Strategy Features + Target Variable)*  
-⬇️  
+↓  
 7️⃣ **Global Neural Network + 5 Fine-Tuned Regime Models** *(TensorFlow)*  
-⬇️  
+↓  
 8️⃣ **Profitability Predictions** → `.txt` Output Table
 
 <img width="960" height="720" alt="General Flowchart" src="https://github.com/user-attachments/assets/74a4b9a6-147b-42c6-af5b-502424f8d7db" />
