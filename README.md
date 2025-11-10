@@ -1,20 +1,16 @@
 # 🧠 Hierarchical ML for Market Regime Detection and Trading Strategy Performance Prediction
 
-**Author:** Sergio Vizcaíno Ferrer  
-**Degree:** Bachelor in Data Science and Engineering  
-**Institution:** Universidad Carlos III de Madrid, 2025  
-
 ---
 
 ## 📘 Overview
 
 This repository contains the implementation developed as part of my Bachelor Thesis, *“Hierarchical Machine Learning for Market Regime Detection and Trading Strategy Performance Prediction.”*
 
-The project explores how **market regime shifts** affect the performance of classical trading strategies such as SMA crossovers, RSI, and Bollinger Bands.  
+The project explores the performance of classical trading strategies such as SMA crossovers, RSI, and Bollinger Bands, combined with **market regime fine-tuning**.  
 A model that performs well under one regime can fail catastrophically in another if it assumes the underlying structure is stable.  
 To address this, the framework integrates **unsupervised regime detection** with **neural network models** that forecast the profitability of trading signals while being *regime-aware*.
 
-> Rather than predicting raw price movements, this framework forecasts when specific trading strategies are likely to succeed or fail — providing a more interpretable, practical, and robust approach to market prediction.
+> Rather than predicting raw price movements, this framework forecasts when specific trading strategies are likely to succeed or fail, providing a more interpretable, practical, and robust approach to market prediction.
 
 ---
 
@@ -24,15 +20,14 @@ The architecture follows a hierarchical, two-stage design:
 
 1. **Market Regime Detection**
    - **Stage 1:** A UMAP + GMM clustering model detects broad market regimes (e.g., Bull, Bear, Neutral, U.S. Bull Only).
-   - **Stage 2:** Within Bull regimes, a UMAP + Spectral Clustering model separates *Aggressive Bull* and *Defensive Bull* subregimes.
+   - **Stage 2:** Within Bull regime, a UMAP + Spectral Clustering model separates *Aggressive Bull* and *Defensive Bull* subregimes.
 
 2. **Strategy Profitability Prediction**
-   - For each day and strategy signal (e.g., SMA crossover or RSI trigger), features are computed from OHLCV data, technical indicators, and categorical context.
+   - For each day and strategy signal, Long/Short, (e.g., SMA crossover or RSI trigger), features are computed from OHLCV data, technical indicators, and categorical context such as trading asset, and regime-derived variables.
    - A **global neural network** learns general profitability patterns across assets.
    - **Fine-tuned regime-specific networks** adapt the model to each detected regime.
 
-The framework forecasts whether a given trading signal (Long/Short) is likely to be profitable over a 10-day horizon, accounting for regime context.
-
+The framework forecasts whether a given trading signal is likely to be profitable over a 10-day horizon.
 ---
 
 ## 🧠 Conceptual Pipeline
@@ -58,13 +53,15 @@ Profitability Predictions → .txt Results Table
 
 ## 📊 Results Summary
 
-The models were trained using Alpaca API data spanning **2016-01-16 to 2025-07-20**, evaluated on assets such as **SPY, QQQ, EFA, and USO**.
+The models were trained using Alpaca API data spanning **2016-01-16 to 2025-07-20**, evaluated on assets such as **SPY, QQQ, EFA,** and **USO**.
 
 ### Performance Across Regimes
 
 | Metric | Random Baseline | Global Model | Fine-Tuned Models |
 |:-------:|:----------------:|:-------------:|:-----------------:|
 | Mean PR-AUC (All Regimes) | 0.444 | 0.488 | **0.505** |
+
+<img width="1160" height="529" alt="pr_auc_neural_network" src="https://github.com/user-attachments/assets/845dcd36-b1fc-4115-a990-37f28042ef6f" />  **Grouped Barplot:** PR-AUC across five regimes (and pooled), comparing Random, Global, and Fine-Tuned models. 
 
 Fine-tuned models outperform both the random baseline and the global model in all regimes except the Neutral one.
 
@@ -74,18 +71,9 @@ When annualized ROI is plotted against the decision threshold:
 - The **Global Model** achieves -0.7% ROI at a 0.5 threshold.
 - **Fine-Tuned Models** peak at **+7.9% ROI** with a 0.56 threshold.
 
+<img width="869" height="550" alt="ROI" src="https://github.com/user-attachments/assets/fe6e3cdc-d9f4-414b-ab04-0257a28f923f" /> **ROI Curve:** Annualized ROI vs decision threshold for global and fine-tuned models, showing stability regions and optimal thresholds.
+
 Transaction cost assumption: *0.2% per trade.*
-
----
-
-### 📈 Visual Results
-
-| Figure | Description |
-|:-------|:-------------|
-
-| <img width="1160" height="529" alt="pr_auc_neural_network" src="https://github.com/user-attachments/assets/845dcd36-b1fc-4115-a990-37f28042ef6f" /> | **Grouped Barplot:** PR-AUC across five regimes (and pooled), comparing Random, Global, and Fine-Tuned models. |
-|<img width="869" height="550" alt="ROI" src="https://github.com/user-attachments/assets/fe6e3cdc-d9f4-414b-ab04-0257a28f923f" /> | **ROI Curve:** Annualized ROI vs decision threshold for global and fine-tuned models, showing stability regions and optimal thresholds. |
-| <img width="960" height="720" alt="Flowchart_ML_system" src="https://github.com/user-attachments/assets/e213a12d-86f7-4855-89b6-f59d6a900fe5" /> | **Flowchart:** Visual summary of data flow and model hierarchy. |
 
 ---
 
@@ -94,8 +82,8 @@ Transaction cost assumption: *0.2% per trade.*
 Clone this repository and install dependencies:
 
 ```bash
-git clone https://github.com/yourusername/hierarchical-ml-market-regimes.git
-cd hierarchical-ml-market-regimes
+git clone https://github.com/eSVeeF/hierarchical-regime-trading-ml.git
+cd hierarchical-regime-trading-ml
 pip install -r requirements.txt
 ````
 
@@ -112,7 +100,7 @@ python main.py --start YYYY-MM-DD --end YYYY-MM-DD
 **Example:**
 
 ```bash
-python main.py --start 2025-10-15 --end 2025-10-20
+python main.py --start 2025-10-15 --end 2025-10-17
 ```
 
 ### 🧾 Example Output
@@ -120,12 +108,11 @@ python main.py --start 2025-10-15 --end 2025-10-20
 After running, a `.txt` file like the following is generated in your working directory:
 
 ```
-Total number of predicted profitable trading strategy signals: 185
+Total number of predicted profitable trading strategy signals: 2
 
 timestamp   symbol   strategy                             signal          pred_prob
-2025-08-01   USO     SMA Crossover - 10/20d windows        Long Position   0.594590
-2025-08-01   SPY     RSI - 14d period                      Short Position  0.583820
-...
+2025-10-15   USO     SMA Crossover - 10/20d windows        Long Position   0.594590
+2025-10-17   SPY     RSI - 14d period                      Short Position  0.583820
 ```
 
 ---
@@ -133,7 +120,7 @@ timestamp   symbol   strategy                             signal          pred_p
 ## 📂 Repository Structure
 
 ```
-📦 hierarchical-ml-market-regimes
+📦 hierarchical-regime-trading-ml
 ├── main.py
 ├── .gitignore
 ├── utils/
