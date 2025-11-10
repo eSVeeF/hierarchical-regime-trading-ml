@@ -4,7 +4,7 @@ Main execution script for predicting profitable trading strategy signals
 using market regime detection and neural models.
 
 Author: Sergio Vizcaino Ferrer
-GitHub: https://github.com/yourusername/yourrepo
+GitHub: https://github.com/eSVeeF/hierarchical-regime-trading-ml.git
 """
 
 import os
