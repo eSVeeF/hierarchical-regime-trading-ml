@@ -54,7 +54,7 @@ The framework forecasts whether a given trading signal is likely to be profitabl
 ↓  
 8️⃣ **Profitability Predictions** → `.txt` Output Table
 
-<img width="960" height="720" alt="General Flowchart" src="https://github.com/user-attachments/assets/74a4b9a6-147b-42c6-af5b-502424f8d7db" />
+![Flowchart](assets/Flowchart_ML_system.png)
 
 ---
 
@@ -66,9 +66,10 @@ The models were trained using Alpaca API data spanning **2016-01-16 to 2025-07-2
 
 | Metric | Random Baseline | Global Model | Fine-Tuned Models |
 |:-------:|:----------------:|:-------------:|:-----------------:|
-| Mean PR-AUC (All Regimes) | 0.444 | 0.488 | **0.505** |
+| Mean PR-AUC across CV folds (All Regimes Pooled) | 0.444 | 0.488 | **0.505** |
 
-<img width="1160" height="529" alt="pr_auc_neural_network" src="https://github.com/user-attachments/assets/845dcd36-b1fc-4115-a990-37f28042ef6f" />  **Grouped Barplot:** PR-AUC across five regimes (and pooled), comparing Random, Global, and Fine-Tuned models. 
+![PR_AUC_barplot](assets/pr_auc_neural_network.png)
+**Grouped Barplot:** PR-AUC across five regimes (and pooled), comparing Random, Global, and Fine-Tuned models. 
 
 Fine-tuned models outperform both the random baseline and the global model in all regimes except the Neutral one.
 
@@ -85,10 +86,11 @@ Fine-tuned models outperform both the random baseline and the global model in al
 ### Return Optimization
 
 When annualized ROI is plotted against the decision threshold:
-- The **Global Model** achieves -0.7% ROI at a 0.5 threshold.
+- The **Global Model** achieves -0.7% ROI at a 0.50 threshold.
 - **Fine-Tuned Models** peak at **+7.9% ROI** with a 0.56 threshold.
 
-<img width="869" height="550" alt="ROI" src="https://github.com/user-attachments/assets/fe6e3cdc-d9f4-414b-ab04-0257a28f923f" /> **ROI Curve:** Annualized ROI vs decision threshold for global and fine-tuned models, showing stability regions and optimal thresholds.
+![ROI Curve](assets/ROI.png)
+**ROI Curve:** Annualized ROI vs decision threshold for global and fine-tuned models, showing stability regions and optimal thresholds.
 
 Transaction cost assumption: *0.2% per trade.*
 
@@ -177,6 +179,9 @@ timestamp   symbol   strategy                             signal          pred_p
 * alpaca-py
 
 ---
+
+## 🎥 Additional Resources 
+You can view additional resources with further explanations on *[`/assets/additional_resources.pdf`](assets/additional_resources.pdf))*
 
 ## 🎓 Acknowledgment
 
