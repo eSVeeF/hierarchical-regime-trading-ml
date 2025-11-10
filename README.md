@@ -6,9 +6,7 @@
 
 This repository contains the implementation developed as part of my Bachelor Thesis, *“Hierarchical Machine Learning for Market Regime Detection and Trading Strategy Performance Prediction.”*
 
-The project explores the performance of classical trading strategies such as SMA crossovers, RSI, and Bollinger Bands, combined with **market regime fine-tuning**.  
-A model that performs well under one regime can fail catastrophically in another if it assumes the underlying structure is stable.  
-To address this, the framework integrates **unsupervised regime detection** with **neural network models** that forecast the profitability of trading signals while being *regime-aware*.
+The project explores the performance of classical trading strategies such as SMA crossovers, RSI, and Bollinger Bands, combined with **market regime fine-tuning**.  A model that performs well under one regime can fail catastrophically in another if it assumes the underlying structure is stable.  To address this, the framework integrates **unsupervised regime detection** with **neural network models** that forecast the profitability of trading signals while being *regime-aware*.
 
 > Rather than predicting raw price movements, this framework forecasts when specific trading strategies are likely to succeed or fail, providing a more interpretable, practical, and robust approach to market prediction.
 
