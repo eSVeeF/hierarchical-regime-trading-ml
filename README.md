@@ -32,22 +32,9 @@ The framework forecasts whether a given trading signal is likely to be profitabl
 
 ## 🧠 Conceptual Pipeline
 
-Alpaca API (Market Data)
-↓
-Custom Asset Universe
-(SPY, QQQ, EEM, EFA, XLP, XLV, XLU, UUP, FXY, FXE, TLT, GLD)
-↓
-Feature Engineering (Returns, Ratios, Technical Indicators)
-↓
-▸ UMAP + GMM → Market Regime Clustering (Bull, Bear, Neutral, US Bull)
-↓
-▸ UMAP + Spectral → Bull Subregimes (Aggressive, Defensive)
-↓
-Enhanced Dataset (Regime Tags + Technical + Strategy Features)
-↓
-Global NN + 5 Fine-Tuned Regime Models (TensorFlow)
-↓
-Profitability Predictions → .txt Results Table
+Alpaca API (Market Data) → Custom Asset Universe (SPY, QQQ, EEM, EFA, XLP, XLV, XLU, UUP, FXY, FXE, TLT, GLD, ...) → Feature Engineering (Returns, Ratios, Technical Indicators) → UMAP + GMM - Market Regime Clustering (Bull, Bear, Neutral, US Bull) → UMAP + Spectral - Bull Subregimes (Aggressive, Defensive) → Enhanced Dataset (Regime Tags + Technical + Strategy Trading Features and Target Variable) → Global NN + 5 Fine-Tuned Regime Models (TensorFlow) → Profitability Predictions - Output .txt Results Table
+
+<img width="960" height="720" alt="General Flowchart" src="https://github.com/user-attachments/assets/74a4b9a6-147b-42c6-af5b-502424f8d7db" />
 
 ---
 
@@ -64,6 +51,16 @@ The models were trained using Alpaca API data spanning **2016-01-16 to 2025-07-2
 <img width="1160" height="529" alt="pr_auc_neural_network" src="https://github.com/user-attachments/assets/845dcd36-b1fc-4115-a990-37f28042ef6f" />  **Grouped Barplot:** PR-AUC across five regimes (and pooled), comparing Random, Global, and Fine-Tuned models. 
 
 Fine-tuned models outperform both the random baseline and the global model in all regimes except the Neutral one.
+
+🏷️ Regime Labels
+
+| Regime ID | Regime Name                 |
+|:----------:|:----------------------------|
+| 0          | Bear                        |
+| 1          | Defensive / Consolidating Bull |
+| 2          | Neutral                     |
+| 3          | US Bull Only                |
+| 4          | Strong / Aggressive Bull    |
 
 ### Return Optimization
 
