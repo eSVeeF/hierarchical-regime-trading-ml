@@ -1,0 +1,24 @@
+Total number of predicted profitable signals: 21
+
+timestamp  symbol            strategy           signal  pred_prob
+2025-11-06  SPY          SMA Crossover - 10/20d  Long   0.569956 
+2025-11-06  USO          SMA Crossover - 14/28d  Long   0.605559 
+2025-11-06  SPY           SMA Crossover - 5/10d Short   0.570145 
+2025-11-06  USO           SMA Crossover - 5/10d Short   0.599362 
+2025-11-06  EFA           SMA Crossover - 5/10d Short   0.583939 
+2025-11-06  EFA          SMA Crossover - 10/20d  Long   0.594962 
+2025-11-06  EFA          SMA Crossover - 14/28d  Long   0.580355 
+2025-11-06  QQQ           SMA Crossover - 5/10d Short   0.566110 
+2025-11-06  QQQ          SMA Crossover - 10/20d  Long   0.562635 
+2025-11-06  USO          SMA Crossover - 10/20d  Long   0.600991 
+2025-11-06  USO   Bollinger Bands - 10d - 1 Std  Long   0.566034 
+2025-11-07  USO           SMA Crossover - 5/10d Short   0.601690 
+2025-11-07  EFA          SMA Crossover - 10/20d  Long   0.589744 
+2025-11-07  EFA          SMA Crossover - 14/28d  Long   0.585978 
+2025-11-07  QQQ           SMA Crossover - 5/10d Short   0.564687 
+2025-11-07  QQQ          SMA Crossover - 10/20d  Long   0.561050 
+2025-11-07  USO          SMA Crossover - 10/20d  Long   0.608631 
+2025-11-07  SPY           SMA Crossover - 5/10d Short   0.568916 
+2025-11-07  SPY          SMA Crossover - 10/20d  Long   0.570076 
+2025-11-07  EFA           SMA Crossover - 5/10d Short   0.583094 
+2025-11-07  USO          SMA Crossover - 14/28d  Long   0.605366 

@@ -1,0 +1,10 @@
+Total number of predicted profitable signals: 7
+
+timestamp  symbol            strategy           signal  pred_prob
+2025-09-03  USO          SMA Crossover - 14/28d Short   0.569633 
+2025-09-03  USO          SMA Crossover - 10/20d  Long   0.573248 
+2025-09-05  USO           SMA Crossover - 5/10d Short   0.588039 
+2025-09-05  USO          SMA Crossover - 14/28d Short   0.599318 
+2025-09-05  USO          SMA Crossover - 10/20d  Long   0.640280 
+2025-09-05  USO   Bollinger Bands - 10d - 1 Std  Long   0.634420 
+2025-09-05  USO   Bollinger Bands - 20d - 1 Std  Long   0.629543 
