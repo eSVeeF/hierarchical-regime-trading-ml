@@ -28,11 +28,31 @@ The architecture follows a hierarchical, two-stage design:
    - **Fine-tuned regime-specific networks** adapt the model to each detected regime.
 
 The framework forecasts whether a given trading signal is likely to be profitable over a 10-day horizon.
+
 ---
 
 ## 🧠 Conceptual Pipeline
 
-Alpaca API (Market Data) → Custom Asset Universe (SPY, QQQ, EEM, EFA, XLP, XLV, XLU, UUP, FXY, FXE, TLT, GLD, ...) → Feature Engineering (Returns, Ratios, Technical Indicators) → UMAP + GMM - Market Regime Clustering (Bull, Bear, Neutral, US Bull) → UMAP + Spectral - Bull Subregimes (Aggressive, Defensive) → Enhanced Dataset (Regime Tags + Technical + Strategy Trading Features and Target Variable) → Global NN + 5 Fine-Tuned Regime Models (TensorFlow) → Profitability Predictions - Output .txt Results Table
+1️⃣ **Alpaca API (Market Data)**  
+⬇️  
+2️⃣ **Custom Asset Universe**  
+*(SPY, QQQ, EEM, EFA, XLP, XLV, XLU, UUP, FXY, FXE, TLT, GLD, ...)*  
+⬇️  
+3️⃣ **Feature Engineering**  
+*(Returns, Ratios, Technical Indicators)*  
+⬇️  
+4️⃣ **UMAP + GMM** → *Market Regime Clustering*  
+*(Bull, Bear, Neutral, US Bull)*  
+⬇️  
+5️⃣ **UMAP + Spectral** → *Bull Subregime Clustering*  
+*(Aggressive Bull, Defensive Bull)*  
+⬇️  
+6️⃣ **Enhanced Dataset**  
+*(Regime Tags + Technical + Strategy Features + Target Variable)*  
+⬇️  
+7️⃣ **Global Neural Network + 5 Fine-Tuned Regime Models** *(TensorFlow)*  
+⬇️  
+8️⃣ **Profitability Predictions** → `.txt` Output Table
 
 <img width="960" height="720" alt="General Flowchart" src="https://github.com/user-attachments/assets/74a4b9a6-147b-42c6-af5b-502424f8d7db" />
 
