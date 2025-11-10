@@ -83,7 +83,7 @@ Fine-tuned models outperform both the random baseline and the global model in al
 
 ### Return Optimization
 
-When annualized ROI is plotted against the decision threshold:
+When annualized ROI (without reinvesting)  is plotted against the decision threshold:
 - The **Global Model** achieves -0.7% ROI at a 0.50 threshold.
 - **Fine-Tuned Models** peak at **+7.9% ROI** with a 0.56 threshold.
 
