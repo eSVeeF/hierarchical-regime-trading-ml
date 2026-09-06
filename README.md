@@ -1,3 +1,5 @@
+`Archived — early trading ML project from 2025. No longer maintained.`
+
 # 🧠 Hierarchical ML for Market Regime Detection and Trading Strategy Performance Prediction
 
 ---
